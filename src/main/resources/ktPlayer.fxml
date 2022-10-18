@@ -164,6 +164,14 @@
                                              </font>
                                           </Label>
                                           <JFXSlider fx:id="volumeSlider" layoutX="44.0" layoutY="24.0" value="10.0" />
+
+                                          <Label fx:id="rateValue" layoutX="380.0" layoutY="22.0" text="100" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXSlider fx:id="rateSlider" layoutX="220.0" layoutY="24.0" value="100.0" min="1" max="200"/>
+
                                           <JFXToggleButton fx:id="autoPlayIcon" layoutX="411.0" layoutY="2.0" prefHeight="58.0" prefWidth="77.0" text=" " toggleColor="#00944f" />
                                           <Label layoutX="488.0" layoutY="20.0" text="Repeat Track">
                                              <font>

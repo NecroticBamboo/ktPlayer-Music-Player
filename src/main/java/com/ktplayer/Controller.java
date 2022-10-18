@@ -89,6 +89,12 @@ public class Controller {
     @FXML
     private Slider volumeSlider;
 
+    // Everything related to rate
+    @FXML
+    private Slider rateSlider;
+    @FXML
+    private Label rateValue;
+
     @FXML
     private ImageView folderChooser;
 
@@ -119,6 +125,7 @@ public class Controller {
 
     private boolean isAutoplay;
     private double volume = 10;
+    private double rate;
     private String path;
 
     private double xOffset = 0;
@@ -131,8 +138,10 @@ public class Controller {
     public Controller() {
         players = new ArrayList<>();
         songSlider = new JFXSlider();
+        rateSlider = new JFXSlider();
         isAutoplay = false;
         volume = 0.1;
+        rate = 1;
         stage = Main.getStage();
         stage.getIcons().add(new Image(ClassLoader.getSystemResource("images/logo.png").toExternalForm()));
     }
@@ -311,6 +320,11 @@ public class Controller {
             volumeValue.setText(String.valueOf((int)volumeSlider.getValue()));
             volumeSlider.setValue(volume * 100);
             mediaView.getMediaPlayer().setVolume(volume);
+
+            rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+            rateSlider.setValue(rate*100);
+            mediaView.getMediaPlayer().setRate(rate);
+
             mediaView.getMediaPlayer().seek(Duration.ZERO);
             updateSliderPosition(Duration.ZERO);
 
@@ -512,6 +526,8 @@ public class Controller {
                                 currentDuration.setText(secToMin((long) player.getCurrentTime().toSeconds()));
                                 updateSliderPosition(player.getCurrentTime());
                                 volumeHandler();
+
+                                rateHandler();
                             }
                         }
                     });
@@ -559,6 +575,23 @@ public class Controller {
             muteIcon.setVisible(false);
             volumeIcon.setVisible(true);
         }
+    }
+
+
+    private void rateHandler() {
+        rateSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mediaView.getMediaPlayer().setRate(rateSlider.getValue()/100);
+                rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+                rate = mediaView.getMediaPlayer().getRate();
+                if (rate == 0.0){
+                    mediaView.getMediaPlayer().setRate(0.1);
+                    rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+                    rate = 0.1;
+                }
+            }
+        });
     }
 
     private void transitionOperation(AnchorPane anchorPane, FadeTransition fadeTransition, boolean isShowing) {
