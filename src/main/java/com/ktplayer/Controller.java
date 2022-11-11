@@ -321,7 +321,7 @@ public class Controller {
             volumeSlider.setValue(volume * 100);
             mediaView.getMediaPlayer().setVolume(volume);
 
-            rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+            rateValue.setText(String.valueOf((int) rateSlider.getValue()/100));
             rateSlider.setValue(rate*100);
             mediaView.getMediaPlayer().setRate(rate);
 
@@ -370,6 +370,7 @@ public class Controller {
                                 songSlider.setValue(0);
                                 updateValues();
                                 mediaPlayer.setVolume(volume);
+                                mediaPlayer.setRate(rate);
                                 mediaPlayer.play();
                                 playIcon();
                             }
@@ -582,12 +583,14 @@ public class Controller {
         rateSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                mediaView.getMediaPlayer().setRate(rateSlider.getValue()/100);
-                rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+                double value = rateSlider.getValue()/100;
+                mediaView.getMediaPlayer().setRate(value);
+                rateValue.setText(String.format("%.2f", value));
                 rate = mediaView.getMediaPlayer().getRate();
+
                 if (rate == 0.0){
                     mediaView.getMediaPlayer().setRate(0.1);
-                    rateValue.setText(String.valueOf((int) rateSlider.getValue()));
+                    rateValue.setText("1");
                     rate = 0.1;
                 }
             }
