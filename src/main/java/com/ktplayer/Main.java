@@ -28,7 +28,7 @@ public class Main extends Application {
         Controller controller = fxmlLoader.getController();
         controller.setMain(this);
 
-        Scene scene = new Scene(root, 820, 740);
+        Scene scene = new Scene(root, 850, 740);
         scene.getStylesheets().add(ClassLoader.getSystemResource("LightTheme.css").toExternalForm());
 
         scene.setFill(Color.TRANSPARENT);

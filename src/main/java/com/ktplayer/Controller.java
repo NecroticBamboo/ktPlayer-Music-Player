@@ -95,6 +95,16 @@ public class Controller {
     @FXML
     private Label rateValue;
 
+    // Everything related to stamps
+    @FXML
+    public ImageView aPointButton;
+    @FXML
+    public Label aPointStamp;
+    @FXML
+    public ImageView bPointButton;
+    @FXML
+    public Label bPointStamp;
+
     @FXML
     private ImageView folderChooser;
 
