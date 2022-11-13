@@ -388,8 +388,6 @@ public class Controller {
                         mediaPlayer = player;
                         final MediaPlayer next_player = players_it.hasNext() ? (MediaPlayer) players_it.next() : player;
 
-//
-//
                         mediaPlayer.setOnEndOfMedia(new Runnable() {
 
 
@@ -423,53 +421,19 @@ public class Controller {
                     }
 
 
-//                    final MediaPlayer current_player = (MediaPlayer) players_it.next();
-//                    mediaPlayer = current_player;
-//                    final MediaPlayer next_player = players_it.hasNext() ? players_it.next() : current_player;
-
-
-//                    for (int i = ((players.indexOf(mediaView.getMediaPlayer())) % players.size()); i < players.size(); i++) {
-//                        final MediaPlayer player = players.get(i);
-//                        mediaPlayer = player;
-//                        final MediaPlayer nextPlayer = players.get((i + 1) % players.size());
-//                        mediaPlayer.setOnEndOfMedia(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mediaView.getMediaPlayer().stop();
-//                                mediaView.getMediaPlayer().seek(Duration.ZERO);
-//                                if(isAutoplay) {
-//                                    mediaView.getMediaPlayer().seek(Duration.ZERO);
-//                                    repeatSongs();
-//                                    return;
-//                                }
-//                                mediaPlayer = nextPlayer;
-//                                mediaView.setMediaPlayer(mediaPlayer);
-//                                mediaView.getMediaPlayer().seek(Duration.ZERO);
-//                                updateSliderPosition(Duration.ZERO);
-//                                songSlider.setValue(0);
-//                                updateValues();
-//                                mediaPlayer.setVolume(volume);
-//                                mediaPlayer.play();
-//                                playIcon();
-//                            }
-//                        });
-//                        pauseSong();
-//                    }
                 }
             });
 
             nextSongButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-//                    seekAndUpdate(players.get(players.indexOf(mediaView.getMediaPlayer())).getTotalDuration());
+
                             mediaView.getMediaPlayer().stop();
                             updateSliderPosition(Duration.ZERO);
                             songSlider.setValue(0);
 
                              MediaPlayer next_player = players.get(players.indexOf(mediaView.getMediaPlayer())+1 <  players.size() ? players.indexOf(mediaView.getMediaPlayer())+1 : players.indexOf(mediaView.getMediaPlayer()));
 
-                            //when going back to mediaview to select a song, make sure the media player is reset to that song's position
-                            //System.out.println(next_player.getMedia().getMetadata());
 
                             mediaPlayer = next_player;
                             System.out.println(mediaPlayer.getMedia().getMetadata());
@@ -479,30 +443,12 @@ public class Controller {
                             songSlider.setValue(0);
                             updateValues();
                             mediaPlayer.setVolume(volume);
+                            mediaPlayer.setRate(rate);
                             mediaPlayer.play();
                             playIcon();
 
                             //add enum to state when theres a stop caused by forward or backward skipping
 
-//                            mediaView.getMediaPlayer().stop();
-//                            mediaPlayer = next_player;
-//                            mediaView.setMediaPlayer(mediaPlayer);
-//                            mediaView.getMediaPlayer().seek(Duration.ZERO);
-//                            updateSliderPosition(Duration.ZERO);
-//                            songSlider.setValue(0);
-//                            updateValues();
-//                            mediaPlayer.setVolume(volume);
-//                            mediaPlayer.play();
-//                            playIcon();
-
-
-//                    for (int i = ((players.indexOf(mediaView.getMediaPlayer())) % players.size()); i < players.size(); i++) {
-//                        final MediaPlayer player = players.get(i);
-//                        mediaPlayer = player;
-//                    }
-
-//
-//                        mediaView.getMediaPlayer().stop();
 
 
 
@@ -538,6 +484,7 @@ public class Controller {
                     songSlider.setValue(0);
                     updateValues();
                     mediaPlayer.setVolume(volume);
+                    mediaPlayer.setRate(rate);
                     mediaPlayer.play();
                     playIcon();
                 }
@@ -737,13 +684,15 @@ public class Controller {
                 rateValue.setText(String.format("%.2f", value));
                 rate = mediaView.getMediaPlayer().getRate();
 
-                if (rate == 0.0){
+             if (rate == 0.0){
                     mediaView.getMediaPlayer().setRate(0.1);
-                    rateValue.setText("1");
-                    rate = 0.1;
-                }
+                   rateValue.setText("1");
+                   rate = 0.1;
+              }
+
             }
         });
+
     }
 
     private void transitionOperation(AnchorPane anchorPane, FadeTransition fadeTransition, boolean isShowing) {

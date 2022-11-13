@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57c410b7-156c-40d2-a375-2cf487430c03" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jfoenix_jfoenix_8_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jfoenix_jfoenix_8_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ktplayer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ktplayer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ktplayer/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ktplayer/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ktPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ktPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$10.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$11.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$12.class" afterDir="false" />
@@ -23,20 +17,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$14.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$15.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ktPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ktPlayer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ktplayer-0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ktplayer-0.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <list id="91a9f25b-3a59-4789-b9d1-b12303fde8f6" name="ktPlayer - Music Player" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,8 +103,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ktPlayer-Music-Player-master-notFork" />
