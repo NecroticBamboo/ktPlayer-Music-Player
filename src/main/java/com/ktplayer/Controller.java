@@ -100,10 +100,14 @@ public class Controller {
     public ImageView aPointButton;
     @FXML
     public Label aPointStamp;
+    private double aPointStampValue = 0.0;
     @FXML
     public ImageView bPointButton;
     @FXML
     public Label bPointStamp;
+    private double bPointStampValue = 0.0;
+    @FXML
+    public Button resetButton;
 
     @FXML
     private ImageView folderChooser;
@@ -366,10 +370,10 @@ public class Controller {
                         mediaPlayer.setOnEndOfMedia(new Runnable() {
                             @Override
                             public void run() {
+
                                 mediaView.getMediaPlayer().stop();
-                                mediaView.getMediaPlayer().seek(Duration.ZERO);
-                                if(isAutoplay) {
-                                    mediaView.getMediaPlayer().seek(Duration.ZERO);
+                                mediaView.getMediaPlayer().seek(isABInUse() ? Duration.seconds(aPointStampValue): Duration.ZERO);
+                                if(isAutoplay || isABInUse()) {
                                     repeatSongs();
                                     return;
                                 }
@@ -404,7 +408,46 @@ public class Controller {
                 }
             });
 
+            aPointButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    double aVal = mediaView.getMediaPlayer().getCurrentTime().toSeconds();
 
+                    if(aVal > bPointStampValue && bPointStampValue!=0.0){
+                        setPointA(bPointStampValue);
+                        setPointB(aVal);
+                    } else {
+                        setPointA(aVal);
+                    }
+
+                }
+            });
+
+            bPointButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    double bVal = mediaView.getMediaPlayer().getCurrentTime().toSeconds();
+                    if(bVal < aPointStampValue && aPointStampValue!=0){
+                        setPointB(aPointStampValue);
+                        setPointA(bVal);
+                    } else {
+                        setPointB(bVal);
+                    }
+                }
+            });
+
+            resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    aPointStamp.setText("0:00");
+                    aPointStampValue = 0.0;
+                    bPointStamp.setText("0:00");
+                    bPointStampValue = 0.0;
+
+                    mediaView.getMediaPlayer().setStartTime(Duration.ZERO);
+                    mediaView.getMediaPlayer().setStopTime(Duration.ZERO);
+                }
+            });
 
             songSlider.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                 @Override
@@ -416,7 +459,7 @@ public class Controller {
                     seekAndUpdate(new Duration(mediaView.getMediaPlayer().getTotalDuration().toMillis() * percent / 100));
                     songSlider.setValueFactory(slider ->
                             Bindings.createStringBinding(
-                                    () -> (secToMin((long) mediaView.getMediaPlayer().getCurrentTime().toSeconds())),
+                                    () -> (secToMin((long) mediaView.getMediaPlayer().getCurrentTime().add(mediaView.getMediaPlayer().getStartTime()).toSeconds())),
                                     songSlider.valueProperty()
                             )
                     );
@@ -436,6 +479,34 @@ public class Controller {
             }
             System.out.println("Song does not exist!");
         }
+    }
+
+    private void setPointA(double aVal) {
+        aPointStampValue = aVal;
+        aPointStamp.setText(secToMin((long) aPointStampValue));
+    }
+
+    private void setPointB(double bVal) {
+        bPointStampValue = bVal;
+        bPointStamp.setText(secToMin((long) bPointStampValue));
+        if(aPointStampValue != 0.0){
+            if (mediaView.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaView.getMediaPlayer().pause();
+                pauseIcon();
+            }
+
+            mediaView.getMediaPlayer().setStartTime(Duration.seconds(aPointStampValue));
+            mediaView.getMediaPlayer().setStopTime(Duration.seconds(bPointStampValue));
+            seekAndUpdate(Duration.ZERO);
+
+            updateSliderPosition(Duration.ZERO);
+            autoPlayIcon.setSelected(true);
+            isAutoplay = true;
+        }
+    }
+
+    private boolean isABInUse(){
+        return aPointStampValue != 0.0 && bPointStampValue != 0.0;
     }
 
     public void setMain(Main main) {
@@ -519,7 +590,7 @@ public class Controller {
     private void seekAndUpdate(Duration duration) {
         final MediaPlayer player = players.get(players.indexOf(mediaView.getMediaPlayer()));
 
-        player.seek(duration);
+        player.seek(player.getStartTime().add(duration));
     }
 
     private void updateValues() {
@@ -535,7 +606,7 @@ public class Controller {
                                 double tduration = player.getTotalDuration().toSeconds();
                                 totalDuration.setText(secToMin((long) tduration));
                                 currentDuration.setText(secToMin((long) player.getCurrentTime().toSeconds()));
-                                updateSliderPosition(player.getCurrentTime());
+                                updateSliderPosition(player.getCurrentTime().subtract(player.getStartTime()));
                                 volumeHandler();
 
                                 rateHandler();
@@ -642,14 +713,13 @@ public class Controller {
         mediaView.getMediaPlayer().setOnRepeat(new Runnable() {
             @Override
             public void run() {
-                mediaView.getMediaPlayer().seek(Duration.ZERO);
+                mediaView.getMediaPlayer().seek(isABInUse() ? Duration.seconds(aPointStampValue):Duration.ZERO);
             }
         });
-        if(isAutoplay) {
+        if(isAutoplay || isABInUse()) {
             mediaView.getMediaPlayer().play();
-            playIcon();
+            pauseIcon();
         }
-        else return;
     }
 
     private void pauseSong() {
@@ -659,10 +729,7 @@ public class Controller {
             public void handle(MouseEvent event) {
                 if (mediaView.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
                     mediaView.getMediaPlayer().pause();
-                    pauseButton.setVisible(false);
-                    pauseButton.setDisable(true);
-                    playButton.setVisible(true);
-                    playButton.setDisable(false);
+                    pauseIcon();
                 }
             }
         });
