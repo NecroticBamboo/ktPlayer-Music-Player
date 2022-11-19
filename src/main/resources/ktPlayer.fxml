@@ -128,6 +128,9 @@
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="pauseButton" fitHeight="48.0" fitWidth="48.0" layoutX="275.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                              <image>
                                                 <Image url="@/images/pause.png" />
                                              </image>

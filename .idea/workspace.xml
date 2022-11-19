@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57c410b7-156c-40d2-a375-2cf487430c03" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ktplayer/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ktplayer/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ktPlayer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ktPlayer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$13$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$13$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ktplayer/Controller.class" afterDir="false" />
     </list>
     <list id="91a9f25b-3a59-4789-b9d1-b12303fde8f6" name="ktPlayer - Music Player" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -263,6 +272,18 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/ktPlayer" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="javafx.scene.control.TableColumn" memberName="tableView" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Media)((MediaPlayer)this.value).media).metadata" custom="javafx.beans.property.ObjectPropertyBase,com.ktplayer.Controller,javafx.beans.value.ChangeListener,javafx.scene.media.MediaPlayer,javafx.scene.media.Media,javafx.scene.media.MediaView" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ktplayer/Main.java">
