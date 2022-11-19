@@ -825,11 +825,13 @@ public class Controller {
                     mediaView.getMediaPlayer().seek(isABInUse() ? Duration.seconds(aPointStampValue):Duration.ZERO);
                 }
             });
-            if(isAutoplay || isABInUse()) {
+            if(isAutoplay && isABInUse()) {
                 //don't do this
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(150);
 
                 mediaView.getMediaPlayer().play();
+            } else if(!isAutoplay && isABInUse()){
+                pauseIcon();
             }
         } catch (Exception e){
 
