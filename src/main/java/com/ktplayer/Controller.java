@@ -448,30 +448,31 @@ public class Controller {
                 @Override
                 public void handle(MouseEvent event) {
 
-                            mediaView.getMediaPlayer().stop();
-                            updateSliderPosition(Duration.ZERO);
-                            songSlider.setValue(0);
+                    if(isABInUse()){
+                        seekAndUpdate(Duration.seconds(bPointStampValue));
+                        return;
+                    }
 
-                             MediaPlayer next_player = players.get(players.indexOf(mediaView.getMediaPlayer())+1 <  players.size() ? players.indexOf(mediaView.getMediaPlayer())+1 : players.indexOf(mediaView.getMediaPlayer()));
+                    mediaView.getMediaPlayer().stop();
+                    updateSliderPosition(Duration.ZERO);
+                    songSlider.setValue(0);
 
-
-                            mediaPlayer = next_player;
-                            System.out.println(mediaPlayer.getMedia().getMetadata());
-                            mediaView.setMediaPlayer(mediaPlayer);
-                            mediaView.getMediaPlayer().seek(Duration.ZERO);
-                            updateSliderPosition(Duration.ZERO);
-                            songSlider.setValue(0);
-                            updateValues();
-                            mediaPlayer.setVolume(volume);
-                            mediaPlayer.setRate(rate);
-                            mediaPlayer.play();
-                            playIcon();
-
-                            //add enum to state when theres a stop caused by forward or backward skipping
+                     MediaPlayer next_player = players.get(players.indexOf(mediaView.getMediaPlayer())+1 <  players.size() ? players.indexOf(mediaView.getMediaPlayer())+1 : players.indexOf(mediaView.getMediaPlayer()));
 
 
+                    mediaPlayer = next_player;
+                    System.out.println(mediaPlayer.getMedia().getMetadata());
+                    mediaView.setMediaPlayer(mediaPlayer);
+                    mediaView.getMediaPlayer().seek(Duration.ZERO);
+                    updateSliderPosition(Duration.ZERO);
+                    songSlider.setValue(0);
+                    updateValues();
+                    mediaPlayer.setVolume(volume);
+                    mediaPlayer.setRate(rate);
+                    mediaPlayer.play();
+                    playIcon();
 
-
+                    //add enum to state when theres a stop caused by forward or backward skipping
                 }
             });
 
@@ -479,6 +480,12 @@ public class Controller {
                 @Override
                 public void handle(MouseEvent event) {
 //                    seekAndUpdate(Duration.ZERO);
+
+                    if(isABInUse()){
+                        seekAndUpdate(Duration.ZERO);
+                        return;
+                    }
+
                     mediaView.getMediaPlayer().stop();
                     updateSliderPosition(Duration.ZERO);
                     songSlider.setValue(0);
