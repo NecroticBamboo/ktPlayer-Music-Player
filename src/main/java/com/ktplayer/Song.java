@@ -69,8 +69,8 @@ public class Song {
         return durationString;
     }
 
-    public String getDuration() {
-        return Duration.minutes(Duration.seconds(duration.get()).toMinutes()).toString();
+    public Duration getDuration() {
+        return Duration.seconds(duration.get());
     }
 
     public String getAlbum() {

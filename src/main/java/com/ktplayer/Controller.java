@@ -608,8 +608,11 @@ public class Controller {
         bPointStamp.setText("00:00");
         bPointStampValue = 0.0;
 
+        int index = players.indexOf(mediaView.getMediaPlayer());
+        Song currentSong = songTable.getItems().get(index);
+
         mediaView.getMediaPlayer().setStartTime(Duration.ZERO);
-        mediaView.getMediaPlayer().setStopTime(Duration.ZERO);
+        mediaView.getMediaPlayer().setStopTime(currentSong.getDuration());
     }
 
     public void setMain(Main main) {
