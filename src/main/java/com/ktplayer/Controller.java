@@ -35,6 +35,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.ListIterator;
 
 
@@ -420,6 +421,12 @@ public class Controller {
                                 mediaView.getMediaPlayer().seek(Duration.ZERO);
                                 updateSliderPosition(Duration.ZERO);
                                 songSlider.setValue(0);
+
+                                aPointStamp.setText("00:00");
+                                aPointStampValue = 0.0;
+                                bPointStamp.setText("00:00");
+                                bPointStampValue=0.0;
+
                                 updateValues();
                                 mediaPlayer.setVolume(volume);
                                 mediaPlayer.setRate(rate);
@@ -534,13 +541,7 @@ public class Controller {
             resetButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    aPointStamp.setText("0:00");
-                    aPointStampValue = 0.0;
-                    bPointStamp.setText("0:00");
-                    bPointStampValue = 0.0;
-
-                    mediaView.getMediaPlayer().setStartTime(Duration.ZERO);
-                    mediaView.getMediaPlayer().setStopTime(Duration.ZERO);
+                    resetABPoints();
                 }
             });
 
@@ -602,6 +603,16 @@ public class Controller {
 
     private boolean isABInUse(){
         return aPointStampValue != 0.0 && bPointStampValue != 0.0;
+    }
+
+    private void resetABPoints() {
+        aPointStamp.setText("00:00");
+        aPointStampValue = 0.0;
+        bPointStamp.setText("00:00");
+        bPointStampValue = 0.0;
+
+        mediaView.getMediaPlayer().setStartTime(Duration.ZERO);
+        mediaView.getMediaPlayer().setStopTime(Duration.ZERO);
     }
 
     public void setMain(Main main) {
@@ -807,16 +818,23 @@ public class Controller {
     }
 
     private void repeatSongs(){
-        mediaView.getMediaPlayer().setOnRepeat(new Runnable() {
-            @Override
-            public void run() {
-                mediaView.getMediaPlayer().seek(isABInUse() ? Duration.seconds(aPointStampValue):Duration.ZERO);
+        try{
+            mediaView.getMediaPlayer().setOnRepeat(new Runnable() {
+                @Override
+                public void run() {
+                    mediaView.getMediaPlayer().seek(isABInUse() ? Duration.seconds(aPointStampValue):Duration.ZERO);
+                }
+            });
+            if(isAutoplay || isABInUse()) {
+                //don't do this
+                TimeUnit.MILLISECONDS.sleep(250);
+
+                mediaView.getMediaPlayer().play();
             }
-        });
-        if(isAutoplay || isABInUse()) {
-            mediaView.getMediaPlayer().play();
-            pauseIcon();
+        } catch (Exception e){
+
         }
+
     }
 
     private void pauseSong() {
