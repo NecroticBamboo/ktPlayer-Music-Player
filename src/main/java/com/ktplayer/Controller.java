@@ -30,16 +30,15 @@ import javafx.scene.media.MediaPlayer.Status;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.ListIterator;
 
 
 public class Controller {
+
 
     @FXML
     private AnchorPane window;
@@ -67,10 +66,9 @@ public class Controller {
     @FXML
     private TableColumn<Song, String> durationColumn;
     @FXML
-    private TableColumn<Song, String> rateColumn;
+    public TableColumn<Song, String> lengthColumn;
     @FXML
-    private TableColumn<Song, String> formatColumn;
-
+    public TableColumn<Song, String> albumColumn;
 
     @FXML
     private Label artistName;
@@ -226,8 +224,8 @@ public class Controller {
         artistNameColumn.setCellValueFactory(cellData -> cellData.getValue().artistNameProperty());
         songNameColumn.setCellValueFactory(cellData -> cellData.getValue().songNameProperty());
         durationColumn.setCellValueFactory(cellData -> cellData.getValue().durationProperty());
-        rateColumn.setCellValueFactory(cellData -> cellData.getValue().rateProperty());
-        formatColumn.setCellValueFactory(cellData -> cellData.getValue().formatProperty());
+        lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty());
+        albumColumn.setCellValueFactory(cellData -> cellData.getValue().albumProperty());
 
         showSongInfo(null);
 
@@ -254,17 +252,9 @@ public class Controller {
 
                             if((e.getClickCount() > 0) && (e.getClickCount() < 2)) {
                                 try {
-//
 
-
-                                //when going back to mediaview to select a song, make sure the media player is reset to that song's position
-                                //System.out.println(next_player.getMedia().getMetadata());
-
-
-
-
-
-
+                                    // When going back to mediaview to select a song, make sure the media player is reset to that song's position
+                                    // System.out.println(next_player.getMedia().getMetadata());
                                     takeCare();
                                 }
                                 catch (Exception ex) {
@@ -289,7 +279,7 @@ public class Controller {
         if(song != null) {
             artistName.setText(song.getArtistName());
             songName.setText(song.getSongName());
-            albumName.setText(song.getFormat());
+            albumName.setText(song.getAlbum());
         }
         else {
             artistName.setText("-");
@@ -315,7 +305,7 @@ public class Controller {
                         i++;
                         Mp3File mp3 = new Mp3File(file.getPath());
                         ID3v2 tag = mp3.getId3v2Tag();
-                        Song song = new Song(String.valueOf(i), tag.getArtist(), tag.getTitle(), kbToMb(file.length()), secToMin(mp3.getLengthInSeconds()),tag.getAlbum(), file.getAbsolutePath());
+                        Song song = new Song(String.valueOf(i), tag.getArtist(), tag.getTitle(), kbToMb(file.length()), Duration.seconds(mp3.getLengthInSeconds()),tag.getAlbum(), file.getAbsolutePath());
                         players.add(createPlayer(file.getAbsolutePath()));
                         songData.add(song);
                     }
@@ -635,7 +625,7 @@ public class Controller {
         return form + "Mb";
     }
 
-    public String secToMin(long sec) {
+    public static String secToMin(long sec) {
         Long s = sec;
         String time = null;
         if((s%60) < 10) {
